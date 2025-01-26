@@ -36,6 +36,7 @@ public class UserService {
   public UserDTO update(String userName, UserDTO userDTO) {
     User user = (User) userRepository.findByEmail(userName);
 
+    user.setName(userDTO.getName());
     user.setPassword(userDTO.getPassword());
     user.setEmail(userDTO.getEmail());
 

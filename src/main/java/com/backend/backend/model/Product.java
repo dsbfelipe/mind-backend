@@ -1,6 +1,7 @@
 package com.backend.backend.model;
 
 import com.backend.backend.dto.ProductDTO;
+import com.backend.backend.imageData.ImageData;
 import jakarta.persistence.*;
 import org.springframework.beans.BeanUtils;
 
@@ -23,6 +24,10 @@ public class Product {
 
   @Column(nullable = false)
   private int amount;
+
+  @OneToOne
+  @JoinColumn
+  private ImageData productProfilePicture;
 
   public Product(ProductDTO productDTO) {
     BeanUtils.copyProperties(productDTO, this);
@@ -69,6 +74,14 @@ public class Product {
 
   public void setAmount(int amount) {
     this.amount = amount;
+  }
+
+  public ImageData getProductProfilePicture() {
+    return productProfilePicture;
+  }
+
+  public void setProductProfilePicture(ImageData productProfilePicture) {
+    this.productProfilePicture = productProfilePicture;
   }
 
 }

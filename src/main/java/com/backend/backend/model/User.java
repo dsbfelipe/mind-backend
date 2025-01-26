@@ -1,6 +1,7 @@
 package com.backend.backend.model;
 
 import com.backend.backend.dto.UserDTO;
+import com.backend.backend.imageData.ImageData;
 import jakarta.persistence.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,6 +26,10 @@ public class User implements UserDetails {
 
   @Column(nullable = false)
   private String password;
+
+  @OneToOne
+  @JoinColumn
+  private ImageData userProfilePicture;
 
   public User(UserDTO userDTO) {
     BeanUtils.copyProperties(userDTO, this);
@@ -65,6 +70,14 @@ public class User implements UserDetails {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public ImageData getUserProfilePicture() {
+    return userProfilePicture;
+  }
+
+  public void setUserProfilePicture(ImageData userProfilePicture) {
+    this.userProfilePicture = userProfilePicture;
   }
 
   @Override
